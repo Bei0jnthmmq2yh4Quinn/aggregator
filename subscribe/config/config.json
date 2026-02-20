@@ -1,0 +1,252 @@
+{
+  "domains": [],
+  "crawl": {
+    "enable": true,
+    "exclude": "",
+    "threshold": 1,
+    "singlelink": true,
+    "persist": {
+      "subs": "crawledsubs",
+      "proxies": "crawledproxies"
+    },
+    "config": {
+      "rename": "",
+      "include": "",
+      "exclude": ""
+    },
+    "telegram": {
+      "enable": true,
+      "pages": 5,
+      "exclude": "",
+      "users": {
+        "ProxyMTProto": {
+          "include": "",
+          "exclude": "",
+          "config": {
+            "rename": ""
+          },
+          "push_to": []
+        },
+        "v2ray_free": {
+          "include": "",
+          "exclude": "",
+          "config": {
+            "rename": ""
+          },
+          "push_to": []
+        },
+        "vpaboron": {
+          "include": "",
+          "exclude": "",
+          "config": {
+            "rename": ""
+          },
+          "push_to": []
+        },
+        "free_v2rayyy": {
+          "include": "",
+          "exclude": "",
+          "config": {
+            "rename": ""
+          },
+          "push_to": []
+        },
+        "V2RayTz": {
+          "include": "",
+          "exclude": "",
+          "config": {
+            "rename": ""
+          },
+          "push_to": []
+        },
+        "PrivateVPNs": {
+          "include": "",
+          "exclude": "",
+          "config": {
+            "rename": ""
+          },
+          "push_to": []
+        },
+        "ConfigsHub": {
+          "include": "",
+          "exclude": "",
+          "config": {
+            "rename": ""
+          },
+          "push_to": []
+        },
+        "FreeV2rays": {
+          "include": "",
+          "exclude": "",
+          "config": {
+            "rename": ""
+          },
+          "push_to": []
+        }
+      }
+    },
+    "google": {
+      "enable": false,
+      "exclude": "",
+      "limits": 100,
+      "notinurl": [],
+      "push_to": []
+    },
+    "yandex": {
+      "enable": false,
+      "exclude": "",
+      "within": 3,
+      "pages": 5,
+      "notinurl": [],
+      "push_to": []
+    },
+    "github": {
+      "enable": true,
+      "pages": 3,
+      "push_to": [],
+      "exclude": "",
+      "spams": []
+    },
+    "twitter": {
+      "enable": false,
+      "users": {}
+    },
+    "repositories": [
+      {
+        "enable": true,
+        "username": "freefq",
+        "repo_name": "free",
+        "commits": 3,
+        "exclude": "",
+        "push_to": []
+      },
+      {
+        "enable": true,
+        "username": "Pawdroid",
+        "repo_name": "Free-servers",
+        "commits": 3,
+        "exclude": "",
+        "push_to": []
+      },
+      {
+        "enable": true,
+        "username": "aiboboxx",
+        "repo_name": "v2rayfree",
+        "commits": 3,
+        "exclude": "",
+        "push_to": []
+      },
+      {
+        "enable": true,
+        "username": "mahdibland",
+        "repo_name": "V2RayAggregator",
+        "commits": 3,
+        "exclude": "",
+        "push_to": []
+      }
+    ],
+    "pages": [
+      {
+        "enable": true,
+        "url": "https://www.v2rayse.com/en/free-nodes/",
+        "include": "",
+        "exclude": "",
+        "multiple": false,
+        "placeholder": "",
+        "start": 1,
+        "end": 1,
+        "config": {
+          "rename": ""
+        },
+        "push_to": []
+      }
+    ],
+    "scripts": [
+      {
+        "enable": true,
+        "script": "v2rayfree#getrss",
+        "params": {
+          "persist": {
+            "fileid": ""
+          },
+          "config": {
+            "enable": true,
+            "liveness": true,
+            "exclude": "",
+            "rename": "",
+            "push_to": []
+          }
+        }
+      },
+      {
+        "enable": true,
+        "script": "v2rayse#recall",
+        "params": {
+          "persist": {
+            "fileid": ""
+          },
+          "config": {
+            "enable": true,
+            "liveness": true,
+            "exclude": "",
+            "rename": "",
+            "push_to": []
+          }
+        }
+      },
+      {
+        "enable": true,
+        "script": "fofa#recall",
+        "params": {
+          "persist": {
+            "fileid": ""
+          },
+          "config": {
+            "enable": true,
+            "liveness": true,
+            "exclude": "",
+            "rename": "",
+            "push_to": []
+          }
+        }
+      }
+    ]
+  },
+  "groups": {
+    "default": {
+      "emoji": true,
+      "list": true,
+      "targets": {
+        "clash": "default-clash"
+      },
+      "regularize": {
+        "enable": true,
+        "locate": true,
+        "residential": false,
+        "bits": 2
+      }
+    }
+  },
+  "storage": {
+    "engine": "gist",
+    "base": "https://api.github.com",
+    "domain": "https://gist.githubusercontent.com",
+    "items": {
+      "default-clash": {
+        "username": "Bei0jnthmmq2yh4Quinn",
+        "folderid": "",
+        "fileid": "f0ce85e0a0ad63019049c76bc883823e"
+      },
+      "crawledsubs": {
+        "username": "Bei0jnthmmq2yh4Quinn",
+        "folderid": "",
+        "fileid": "f0ce85e0a0ad63019049c76bc883823e"
+      },
+      "crawledproxies": {
+        "username": "Bei0jnthmmq2yh4Quinn",
+        "folderid": "",
+        "fileid": "f0ce85e0a0ad63019049c76bc883823e"
+      }
+    }
+  }
+}
