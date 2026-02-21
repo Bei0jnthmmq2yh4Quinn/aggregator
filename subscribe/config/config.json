@@ -12,98 +12,51 @@
     "config": {
       "rename": "",
       "include": "",
-      "exclude": ""
+      "exclude": "(剩余|过期|官网|群|频道|关注)"
     },
     "telegram": {
       "enable": true,
-      "pages": 5,
+      "pages": 8,
       "exclude": "",
       "users": {
-        "ProxyMTProto": {
-          "include": "",
-          "exclude": "",
-          "config": {
-            "rename": ""
-          },
-          "push_to": []
-        },
-        "v2ray_free": {
-          "include": "",
-          "exclude": "",
-          "config": {
-            "rename": ""
-          },
-          "push_to": []
-        },
-        "vpaboron": {
-          "include": "",
-          "exclude": "",
-          "config": {
-            "rename": ""
-          },
-          "push_to": []
-        },
-        "free_v2rayyy": {
-          "include": "",
-          "exclude": "",
-          "config": {
-            "rename": ""
-          },
-          "push_to": []
-        },
-        "V2RayTz": {
-          "include": "",
-          "exclude": "",
-          "config": {
-            "rename": ""
-          },
-          "push_to": []
-        },
-        "PrivateVPNs": {
-          "include": "",
-          "exclude": "",
-          "config": {
-            "rename": ""
-          },
-          "push_to": []
-        },
-        "ConfigsHub": {
-          "include": "",
-          "exclude": "",
-          "config": {
-            "rename": ""
-          },
-          "push_to": []
-        },
-        "FreeV2rays": {
-          "include": "",
-          "exclude": "",
-          "config": {
-            "rename": ""
-          },
-          "push_to": []
-        }
+        "ProxyMTProto": { "push_to": ["free"] },
+        "v2ray_free": { "push_to": ["free"] },
+        "vpaboron": { "push_to": ["free"] },
+        "free_v2rayyy": { "push_to": ["free"] },
+        "V2RayTz": { "push_to": ["free"] },
+        "PrivateVPNs": { "push_to": ["free"] },
+        "ConfigsHub": { "push_to": ["free"] },
+        "FreeV2rays": { "push_to": ["free"] },
+        "VmessProtocol": { "push_to": ["free"] },
+        "proxy_kafee": { "push_to": ["free"] },
+        "DirectVPN": { "push_to": ["free"] },
+        "OutlineRelayBot": { "push_to": ["free"] },
+        "freewireguard": { "push_to": ["free"] },
+        "foxProxies": { "push_to": ["free"] },
+        "iSegaro": { "push_to": ["free"] },
+        "freenaboron": { "push_to": ["free"] }
       }
     },
     "google": {
-      "enable": false,
+      "enable": true,
       "exclude": "",
       "limits": 100,
+      "qdr": 730,
       "notinurl": [],
-      "push_to": []
+      "push_to": ["free"]
     },
     "yandex": {
-      "enable": false,
+      "enable": true,
       "exclude": "",
-      "within": 3,
+      "within": 7,
       "pages": 5,
       "notinurl": [],
-      "push_to": []
+      "push_to": ["free"]
     },
     "github": {
       "enable": true,
-      "pages": 3,
-      "push_to": [],
+      "pages": 5,
+      "push_to": ["free"],
       "exclude": "",
       "spams": []
     },
@@ -117,48 +70,92 @@
         "username": "freefq",
         "repo_name": "free",
         "commits": 3,
-        "exclude": "",
-        "push_to": []
+        "push_to": ["free"]
       },
       {
         "enable": true,
         "username": "Pawdroid",
         "repo_name": "Free-servers",
         "commits": 3,
-        "exclude": "",
-        "push_to": []
+        "push_to": ["free"]
       },
       {
         "enable": true,
         "username": "aiboboxx",
         "repo_name": "v2rayfree",
         "commits": 3,
-        "exclude": "",
-        "push_to": []
+        "push_to": ["free"]
       },
       {
         "enable": true,
         "username": "mahdibland",
         "repo_name": "V2RayAggregator",
         "commits": 3,
-        "exclude": "",
-        "push_to": []
+        "push_to": ["free"]
+      },
+      {
+        "enable": true,
+        "username": "peasoft",
+        "repo_name": "NoMoreWalls",
+        "commits": 3,
+        "push_to": ["free"]
+      },
+      {
+        "enable": true,
+        "username": "mfuu",
+        "repo_name": "v2ray",
+        "commits": 3,
+        "push_to": ["free"]
+      },
+      {
+        "enable": true,
+        "username": "ermaozi",
+        "repo_name": "get_subscribe",
+        "commits": 3,
+        "push_to": ["free"]
+      },
+      {
+        "enable": true,
+        "username": "barry-far",
+        "repo_name": "V2ray-Configs",
+        "commits": 3,
+        "push_to": ["free"]
+      },
+      {
+        "enable": true,
+        "username": "Leon406",
+        "repo_name": "SubCrawler",
+        "commits": 3,
+        "push_to": ["free"]
+      },
+      {
+        "enable": true,
+        "username": "ts-sf",
+        "repo_name": "fly",
+        "commits": 3,
+        "push_to": ["free"]
       }
     ],
     "pages": [
       {
         "enable": true,
         "url": "https://www.v2rayse.com/en/free-nodes/",
-        "include": "",
-        "exclude": "",
-        "multiple": false,
-        "placeholder": "",
-        "start": 1,
-        "end": 1,
-        "config": {
-          "rename": ""
-        },
-        "push_to": []
+        "push_to": ["free"]
+      },
+      {
+        "enable": true,
+        "url": [
+          "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/vmess",
+          "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/vless",
+          "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/trojan",
+          "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/shadowsocks"
+        ],
+        "push_to": ["free"]
+      },
+      {
+        "enable": true,
+        "url": "https://raw.githubusercontent.com/yebekhe/TelegramV2rayCollector/main/sub/base64/mix",
+        "push_to": ["free"]
       }
     ],
     "scripts": [
@@ -166,15 +163,11 @@
         "enable": true,
         "script": "v2rayfree#getrss",
         "params": {
-          "persist": {
-            "fileid": ""
-          },
+          "persist": { "fileid": "" },
           "config": {
             "enable": true,
             "liveness": true,
-            "exclude": "",
-            "rename": "",
-            "push_to": []
+            "push_to": ["free"]
           }
         }
       },
@@ -182,15 +175,11 @@
         "enable": true,
         "script": "v2rayse#recall",
         "params": {
-          "persist": {
-            "fileid": ""
-          },
+          "persist": { "fileid": "" },
           "config": {
             "enable": true,
             "liveness": true,
-            "exclude": "",
-            "rename": "",
-            "push_to": []
+            "push_to": ["free"]
           }
         }
       },
@@ -198,31 +187,29 @@
         "enable": true,
         "script": "fofa#recall",
         "params": {
-          "persist": {
-            "fileid": ""
-          },
+          "persist": { "fileid": "" },
           "config": {
             "enable": true,
             "liveness": true,
-            "exclude": "",
-            "rename": "",
-            "push_to": []
+            "push_to": ["free"]
           }
         }
       }
     ]
   },
   "groups": {
-    "default": {
+    "free": {
       "emoji": true,
       "list": true,
       "targets": {
-        "clash": "default-clash"
+        "clash": "free-clash",
+        "v2ray": "free-v2ray",
+        "singbox": "free-singbox"
       },
       "regularize": {
         "enable": true,
         "locate": true,
-        "residential": false,
+        "residential": true,
         "bits": 2
       }
     }
@@ -232,20 +219,35 @@
     "base": "https://api.github.com",
     "domain": "https://gist.githubusercontent.com",
     "items": {
-      "default-clash": {
+      "free-clash": {
         "username": "Bei0jnthmmq2yh4Quinn",
         "folderid": "",
-        "fileid": "f0ce85e0a0ad63019049c76bc883823e"
+        "fileid": "f0ce85e0a0ad63019049c76bc883823e",
+        "filename": "clash.yaml"
+      },
+      "free-v2ray": {
+        "username": "Bei0jnthmmq2yh4Quinn",
+        "folderid": "",
+        "fileid": "f0ce85e0a0ad63019049c76bc883823e",
+        "filename": "v2ray.txt"
+      },
+      "free-singbox": {
+        "username": "Bei0jnthmmq2yh4Quinn",
+        "folderid": "",
+        "fileid": "f0ce85e0a0ad63019049c76bc883823e",
+        "filename": "singbox.json"
       },
       "crawledsubs": {
         "username": "Bei0jnthmmq2yh4Quinn",
         "folderid": "",
-        "fileid": "f0ce85e0a0ad63019049c76bc883823e"
+        "fileid": "f0ce85e0a0ad63019049c76bc883823e",
+        "filename": "subscribes.txt"
       },
       "crawledproxies": {
         "username": "Bei0jnthmmq2yh4Quinn",
         "folderid": "",
-        "fileid": "f0ce85e0a0ad63019049c76bc883823e"
+        "fileid": "f0ce85e0a0ad63019049c76bc883823e",
+        "filename": "gistfile0.txt"
       }
     }
   }
