@@ -14,6 +14,7 @@ env:
 
   # token
   PUSH_TOKEN: ${{ secrets.PUSH_TOKEN }}
+  GH_TOKEN: ${{ secrets.GIST_PAT }}
 
   # network reachable
   REACHABLE: ${{ vars.REACHABLE }}
@@ -55,3 +56,4 @@ jobs:
 
       - name: Timestamp
         run: date
+
