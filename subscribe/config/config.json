@@ -224,6 +224,33 @@
                 "push_to": [
                     "free"
                 ]
+            },
+            {
+                "enable": true,
+                "username": "Epodonios",
+                "repo_name": "v2ray-configs",
+                "commits": 3,
+                "push_to": [
+                    "free"
+                ]
+            },
+            {
+                "enable": true,
+                "username": "soroushmirzaei",
+                "repo_name": "telegram-configs-collector",
+                "commits": 3,
+                "push_to": [
+                    "free"
+                ]
+            },
+            {
+                "enable": true,
+                "username": "MrMohebi",
+                "repo_name": "xray-proxy-grabber-telegram",
+                "commits": 3,
+                "push_to": [
+                    "free"
+                ]
             }
         ],
         "pages": [
@@ -256,7 +283,7 @@
         ],
         "scripts": [
             {
-                "enable": true,
+                "enable": false,
                 "script": "v2rayfree#getrss",
                 "params": {
                     "persist": {
@@ -272,7 +299,7 @@
                 }
             },
             {
-                "enable": true,
+                "enable": false,
                 "script": "v2rayse#recall",
                 "params": {
                     "persist": {
@@ -288,7 +315,7 @@
                 }
             },
             {
-                "enable": true,
+                "enable": false,
                 "script": "fofa#recall",
                 "params": {
                     "persist": {
