@@ -4,7 +4,7 @@
     "enable": true,
     "exclude": "",
     "threshold": 1,
-    "singlelink": false,
+    "singlelink": true,
     "persist": {
       "subs": "crawledsubs",
       "proxies": "crawledproxies"
