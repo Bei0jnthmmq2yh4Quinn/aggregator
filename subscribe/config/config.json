@@ -4,7 +4,7 @@
     "enable": true,
     "exclude": "",
     "threshold": 1,
-    "singlelink": true,
+    "singlelink": false,
     "persist": {
       "subs": "crawledsubs",
       "proxies": "crawledproxies"
@@ -15,109 +15,13 @@
       "exclude": "(剩余|过期|官网|群|频道|关注)"
     },
     "telegram": {
-      "enable": true,
+      "enable": false,
       "pages": 8,
       "exclude": "",
-      "users": {
-        "ProxyMTProto": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "v2ray_free": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "vpaboron": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "free_v2rayyy": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "V2RayTz": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "PrivateVPNs": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "ConfigsHub": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "FreeV2rays": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "VmessProtocol": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "proxy_kafee": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "DirectVPN": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "OutlineRelayBot": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "freewireguard": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "foxProxies": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "iSegaro": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "freenaboron": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "free_v2ray_clash": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "v2rayNG_Matsuri": {
-          "push_to": [
-            "free"
-          ]
-        },
-        "v2Line": {
-          "push_to": [
-            "free"
-          ]
-        }
-      }
+      "users": {}
     },
     "google": {
-      "enable": true,
+      "enable": false,
       "exclude": "",
       "limits": 100,
       "qdr": 730,
@@ -127,7 +31,7 @@
       ]
     },
     "yandex": {
-      "enable": true,
+      "enable": false,
       "exclude": "",
       "within": 7,
       "pages": 5,
@@ -137,7 +41,7 @@
       ]
     },
     "github": {
-      "enable": true,
+      "enable": false,
       "pages": 5,
       "push_to": [
         "free"
@@ -149,211 +53,32 @@
       "enable": false,
       "users": {}
     },
-    "repositories": [
-      {
-        "enable": true,
-        "username": "Pawdroid",
-        "repo_name": "Free-servers",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "aiboboxx",
-        "repo_name": "v2rayfree",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "mahdibland",
-        "repo_name": "V2RayAggregator",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "peasoft",
-        "repo_name": "NoMoreWalls",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "mfuu",
-        "repo_name": "v2ray",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "ermaozi",
-        "repo_name": "get_subscribe",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "Leon406",
-        "repo_name": "SubCrawler",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "ts-sf",
-        "repo_name": "fly",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "Epodonios",
-        "repo_name": "v2ray-configs",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "MrMohebi",
-        "repo_name": "xray-proxy-grabber-telegram",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "free-nodes",
-        "repo_name": "clashfree",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "chengaopan",
-        "repo_name": "AutoMergePublicNodes",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "Jsnzkpg",
-        "repo_name": "Jsnzkpg",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "snakem982",
-        "repo_name": "proxypool",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "xrayfree",
-        "repo_name": "free-ssr-ss-v2ray-vpn-clash",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "barry-far",
-        "repo_name": "V2ray-Config",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "roosterkid",
-        "repo_name": "openproxylist",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "ebrasha",
-        "repo_name": "free-v2ray-public-list",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "telegeam",
-        "repo_name": "freenode",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      },
-      {
-        "enable": true,
-        "username": "HakurouKen",
-        "repo_name": "free-node",
-        "commits": 3,
-        "push_to": [
-          "free"
-        ]
-      }
-    ],
+    "repositories": [],
     "pages": [
       {
         "enable": true,
-        "url": "https://www.v2rayse.com/en/free-nodes/",
+        "url": "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_base64_Sub.txt",
         "push_to": [
           "free"
         ]
       },
       {
         "enable": true,
-        "url": [
-          "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/vmess",
-          "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/vless",
-          "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/trojan",
-          "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/shadowsocks"
-        ],
+        "url": "https://raw.githubusercontent.com/barry-far/V2ray-Config/main/All_Configs_base64_Sub.txt",
         "push_to": [
           "free"
         ]
       },
       {
         "enable": true,
-        "url": "https://raw.githubusercontent.com/yebekhe/TelegramV2rayCollector/main/sub/base64/mix",
+        "url": "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_RAW.txt",
+        "push_to": [
+          "free"
+        ]
+      },
+      {
+        "enable": true,
+        "url": "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml",
         "push_to": [
           "free"
         ]
