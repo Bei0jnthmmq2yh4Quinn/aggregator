@@ -1,5 +1,51 @@
 {
-  "domains": [],
+  "domains": [
+    {
+      "name": "mfuu-clash",
+      "sub": "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml",
+      "push_to": [
+        "free"
+      ],
+      "origin": "TEMPORARY",
+      "liveness": true
+    },
+    {
+      "name": "pawdroid",
+      "sub": "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub",
+      "push_to": [
+        "free"
+      ],
+      "origin": "TEMPORARY",
+      "liveness": true
+    },
+    {
+      "name": "chengaopan-list",
+      "sub": "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.txt",
+      "push_to": [
+        "free"
+      ],
+      "origin": "TEMPORARY",
+      "liveness": true
+    },
+    {
+      "name": "ripao-freenode",
+      "sub": "https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub",
+      "push_to": [
+        "free"
+      ],
+      "origin": "TEMPORARY",
+      "liveness": true
+    },
+    {
+      "name": "ermaozi-clash",
+      "sub": "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml",
+      "push_to": [
+        "free"
+      ],
+      "origin": "TEMPORARY",
+      "liveness": true
+    }
+  ],
   "crawl": {
     "enable": true,
     "exclude": "",
@@ -60,28 +106,39 @@
         "url": "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_base64_Sub.txt",
         "push_to": [
           "free"
-        ]
+        ],
+        "limits": 300
       },
       {
         "enable": true,
         "url": "https://raw.githubusercontent.com/barry-far/V2ray-Config/main/All_Configs_base64_Sub.txt",
         "push_to": [
           "free"
-        ]
+        ],
+        "limits": 300
       },
       {
         "enable": true,
         "url": "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_RAW.txt",
         "push_to": [
           "free"
-        ]
+        ],
+        "limits": 200
       },
       {
-        "enable": true,
+        "enable": false,
         "url": "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml",
         "push_to": [
           "free"
         ]
+      },
+      {
+        "enable": true,
+        "url": "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_base64.txt",
+        "push_to": [
+          "free"
+        ],
+        "limits": 300
       }
     ],
     "scripts": [

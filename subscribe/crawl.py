@@ -69,6 +69,42 @@ def allow_single_link() -> bool:
     return os.environ.get(SINGLE_PROXIES_ENV_NAME, "").lower() == "true"
 
 
+def sanitize_proxy_uri(uri: str) -> str:
+    """Clean page-crawled proxy URI remarks without touching credentials."""
+    uri = utils.trim(uri)
+    if not uri:
+        return ""
+
+    # URL fragments are human remarks. They often contain commas/braces/colons that
+    # break subconverter's generated YAML, so drop them for crawled single links.
+    protocol = uri.split("://", 1)[0].lower() if "://" in uri else ""
+    if protocol in {"vless", "trojan", "ss", "hysteria", "hysteria2", "tuic"}:
+        return uri.split("#", 1)[0]
+
+    if protocol != "vmess":
+        return uri
+
+    payload = uri[len("vmess://") :].split("#", 1)[0]
+    try:
+        payload += "=" * ((4 - len(payload) % 4) % 4)
+        raw = base64.urlsafe_b64decode(payload).decode(encoding="UTF8", errors="ignore")
+        data = json.loads(raw)
+        if isinstance(data, dict):
+            server = utils.trim(data.get("add", ""))
+            if not server or ":" in server:
+                return ""
+
+            remark = utils.trim(data.get("ps", ""))
+            if remark:
+                data["ps"] = re.sub(r"[\r\n,{}\[\]:]+", " ", remark)[:80]
+            encoded = base64.urlsafe_b64encode(json.dumps(data, ensure_ascii=False).encode("UTF8")).decode("UTF8")
+            return f"vmess://{encoded.rstrip('=')}"
+    except:
+        pass
+
+    return uri.split("#", 1)[0]
+
+
 def multi_thread_crawl(func: typing.Callable, params: list) -> dict:
     if not func or not params or type(params) != list:
         return {}
@@ -843,6 +879,7 @@ def crawl_single_page(
     headers: dict = None,
     origin: str = Origin.PAGE.name,
     nocache: bool = False,
+    limits: int = sys.maxsize,
 ) -> dict:
     if not url or not push_to:
         logger.error(f"[PageCrawl] cannot crawl from page: {url}")
@@ -860,6 +897,7 @@ def crawl_single_page(
         config=config,
         source=origin,
         nocache=nocache,
+        limits=limits,
     )
 
 
@@ -882,13 +920,17 @@ def crawl_pages(
         exclude = v.get("exclude", "").strip()
         config = v.get("config", {})
         nocache = v.get("nocache", False)
+        try:
+            limits = max(1, int(v.get("limits", sys.maxsize)))
+        except:
+            limits = sys.maxsize
 
         final_headers = deepcopy(headers) if headers and isinstance(headers, dict) else utils.DEFAULT_HTTP_HEADERS
         specific_headers = v.get("headers", {})
         if specific_headers and isinstance(specific_headers, dict):
             final_headers.update(specific_headers)
 
-        params.append([k, push_to, include, exclude, config, final_headers, origin, nocache])
+        params.append([k, push_to, include, exclude, config, final_headers, origin, nocache, limits])
 
     subscribes = multi_thread_crawl(func=crawl_single_page, params=params)
     if not silent:
@@ -1082,6 +1124,18 @@ def extract_subscribes(
         return {}
     try:
         limits, collections, proxies = max(1, limits), {}, []
+        compact = "".join(content.strip().split())
+        if compact and utils.isb64encode(content=compact):
+            try:
+                compact += "=" * ((4 - len(compact) % 4) % 4)
+                decoded = base64.b64decode(compact).decode(encoding="UTF8", errors="ignore").strip()
+                if decoded and decoded != content:
+                    # Some public sources are base64 subscriptions rather than HTML/text pages.
+                    # Decode once so PageCrawl can extract protocol links from them.
+                    content = f"{content}\n{decoded}"
+            except:
+                pass
+
         sub_regex = r"https?://(?:[a-zA-Z0-9\u4e00-\u9fa5\-]+\.)+[a-zA-Z0-9\u4e00-\u9fa5\-]+(?::\d+)?(?:(?:(?:/index.php)?/api/v1/client/subscribe\?token=[a-zA-Z0-9]{16,32})|(?:/link/[a-zA-Z0-9]+\?(?:sub|mu|clash)=\d)|(?:/(?:s|sub)/[a-zA-Z0-9]{32}))|https://jmssub\.net/members/getsub\.php\?service=\d+&id=[a-zA-Z0-9\-]{36}(?:\S+)?"
         extra_regex = r"https?://(?:[a-zA-Z0-9\u4e00-\u9fa5\-]+\.)+[a-zA-Z0-9\u4e00-\u9fa5\-]+/sub\?(?:\S+)?target=\S+"
         protocal_regex = (
@@ -1167,11 +1221,15 @@ def extract_subscribes(
             try:
                 groups = re.findall(protocal_regex, content, flags=re.I)
                 if groups:
-                    proxies.extend([x.lower().strip() for x in groups if x])
+                    # Do not lowercase proxy URIs: credentials/UUID fragments and base64 payloads
+                    # are case-sensitive for several protocols (for example vmess/ss/vless).
+                    remain = max(0, limits - len(proxies))
+                    cleaned = [sanitize_proxy_uri(x) for x in groups if x]
+                    proxies.extend([x for x in cleaned if x][:remain])
                     params = {
                         "push_to": push_to,
                         "origin": source,
-                        "proxies": list(set(proxies)),
+                        "proxies": list(dict.fromkeys(proxies)),
                     }
                     if config:
                         params.update(config)

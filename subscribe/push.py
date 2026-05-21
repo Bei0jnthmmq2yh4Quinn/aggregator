@@ -376,7 +376,7 @@ class PushToLocal(PushTo):
         self.name = "local"
 
     def validate(self, config: dict) -> bool:
-        return config is not None and config.get("fileid", "")
+        return bool(config is not None and config.get("fileid", ""))
 
     def push_to(self, content: str, config: dict, group: str = "", retry: int = 5) -> bool:
         folder = config.get("folderid", "")
@@ -395,7 +395,8 @@ class PushToLocal(PushTo):
 
         fileid = config.get("fileid", "")
         folderid = config.get("folderid", "")
-        filepath = os.path.abspath(os.path.join(folderid, fileid))
+        basedir = os.path.abspath(os.environ.get("LOCAL_BASEDIR", ""))
+        filepath = os.path.abspath(os.path.join(basedir, folderid, fileid))
         return f"{utils.FILEPATH_PROTOCAL}{filepath}"
 
 

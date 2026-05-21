@@ -36,6 +36,22 @@ import subconverter
 PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 
+def normalize_yaml_string_tags(content: str) -> str:
+    """Replace subconverter's local !<str> tags with quoted YAML strings.
+
+    Some YAML consumers (and PyYAML SafeLoader) reject the local tag while Clash
+    only needs the value to remain a string, especially for numeric passwords.
+    """
+    if not content or "!<str>" not in content:
+        return content
+
+    def quote(match: re.Match) -> str:
+        value = match.group(1).strip()
+        return json.dumps(value, ensure_ascii=False)
+
+    return re.sub(r"!<str>\s+([^,}\]\n#]+)", quote, content)
+
+
 @dataclass
 class ProcessConfig(object):
     # task list
@@ -642,7 +658,7 @@ def aggregate(args: argparse.Namespace) -> None:
             except:
                 bits = 2
 
-            nochecks = location.regularize(
+            regularized = location.regularize(
                 proxies=nochecks,
                 num_threads=args.num,
                 show_progress=display,
@@ -650,6 +666,10 @@ def aggregate(args: argparse.Namespace) -> None:
                 residential=residential,
                 digits=bits,
             )
+            if regularized:
+                nochecks = regularized
+            else:
+                logger.warning(f"regularize returned empty, keep original proxies, group=[{k}], count={len(nochecks)}")
 
         source_file, data = "config.yaml", {"proxies": nochecks}
         filepath = os.path.join(PATH, "subconverter", source_file)
@@ -690,6 +710,9 @@ def aggregate(args: argparse.Namespace) -> None:
 
                 with open(filepath, "r", encoding="utf8") as f:
                     content = f.read()
+
+                if target == "clash":
+                    content = normalize_yaml_string_tags(content=content)
 
                 mixed = target == "v2ray" or target == "mixed" or "ss" in target
                 if mixed and not utils.isb64encode(content=content):
