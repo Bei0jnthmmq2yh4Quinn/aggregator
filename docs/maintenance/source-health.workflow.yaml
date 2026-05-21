@@ -1,0 +1,75 @@
+name: Source Health
+
+on:
+  schedule:
+    - cron: "35 */12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+env:
+  TZ: Asia/Shanghai
+
+concurrency:
+  group: aggregator-source-health
+  cancel-in-progress: false
+
+jobs:
+  healthcheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Prepare
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+          architecture: "x64"
+
+      - name: Check sources
+        id: health
+        run: |
+          python scripts/source_health.py \
+            --config subscribe/config/config.json \
+            --state source_health.json \
+            --summary source_health_report.md \
+            --write \
+            --disable-threshold 3 \
+            --min-total-links 50 \
+            --min-enabled-sources 3
+          cat source_health_report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit health state
+        run: |
+          if git diff --quiet -- subscribe/config/config.json source_health.json; then
+            echo "no health state changes"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subscribe/config/config.json source_health.json
+          git commit -m "Update source health state [skip ci]"
+          git push
+
+      - name: Open or update health issue
+        if: steps.health.outputs.unhealthy == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create aggregator-health --color F97316 --description "Aggregator source health alert" || true
+          existing=$(gh issue list --state open --label aggregator-health --json number --jq '.[0].number // ""')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file source_health_report.md
+          else
+            gh issue create \
+              --title "Aggregator health alert" \
+              --label aggregator-health \
+              --body-file source_health_report.md
+          fi
